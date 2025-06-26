@@ -7,7 +7,7 @@ module "iam" {
 }
 
 module "lambda-function" {
-  source = "./module/lambda-function"
+  source                        = "./module/lambda-function"
   rekognition-collectionid-role = module.iam.rekognition-collectionid-role
 }
 
