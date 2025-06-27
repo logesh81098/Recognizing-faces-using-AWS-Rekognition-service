@@ -67,7 +67,7 @@ data "archive_file" "faceprint-python-to-zip" {
 
 resource "aws_lambda_function" "rekognition-faceprints" {
   function_name = "Rekognition-Faceprints"
-  description = "Lambda Function to Create Faceprints from source images and store it on DynamoDB table for reference"
+  description = "Lambda Function to Create Faceprints from source images and store it on DynamoDB table"
   filename = "module/lambda-function/rekognition-faceprints.zip"
   handler = "rekognition-faceprints.lambda_handler"
   role = var.rekognition-faceprints-role
@@ -81,7 +81,15 @@ resource "aws_lambda_function" "rekognition-faceprints" {
 
 
 ##########################################################################################################################################
-#                                               
+#                                           S3 to Trigger Lambda Function     
 ##########################################################################################################################################
 
-#
+#S3 bucket will trigger lambda function for each object creation
+
+resource "aws_lambda_permission" "s3-to-trigger-lambda" {
+  statement_id = "s3-to-trigger-lambda"
+  function_name = aws_lambda_function.rekognition-faceprints.function_name
+  source_arn = var.source-bucket-arn
+  action = "lambda:InvokeFunction"
+  principal =  "s3.amazonaws.com"
+}
