@@ -30,3 +30,11 @@ module "security-group" {
 module "key-pair" {
   source = "./module/key-pair"
 }
+
+module "ec2-server" {
+  source = "./module/ec2-server"
+  subnet = module.vpc.public-subnet-1
+  server-iam-role = module.iam.rekognition-flask-server-instance-profile
+  security-group = module.security-group.rekognition-server-sg
+  keypair = module.key-pair.face-rekognition-server-keypair
+}
