@@ -286,3 +286,15 @@ resource "aws_iam_role_policy_attachment" "rekognition-flask-application" {
   role = aws_iam_role.rekognition-flask-application-role.id
   policy_arn = aws_iam_policy.rekognition-flask-application-policy.arn
 }
+
+
+##########################################################################################################################################
+#                                                        IAM Instance Profile
+##########################################################################################################################################
+
+#IAM Instance profile for EC2 server
+
+resource "aws_iam_instance_profile" "rekognition-flask-application-server" {
+  name = "Rekognition-Flask-Application-Server-Role"
+  role = aws_iam_role.rekognition-faceprints-role.id
+}
