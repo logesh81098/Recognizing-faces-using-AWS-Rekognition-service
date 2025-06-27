@@ -180,3 +180,109 @@ resource "aws_iam_role_policy_attachment" "rekognition-faceprints" {
   role = aws_iam_role.rekognition-faceprints-role.id
   policy_arn = aws_iam_policy.rekognition-faceprints-policy.arn
 }
+
+
+##########################################################################################################################################
+#                                                   IAM Role
+##########################################################################################################################################
+
+#IAM Role for EC2 instance to Create and Test Docker image of Flask Application
+
+resource "aws_iam_role" "rekognition-flask-application-role" {
+  name = "Rekognition-Flask-Application-Role"
+  description = "IAM Role for EC2 instance to Create and Test Docker image of Flask Application"
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            }
+        }
+    ]
+}
+EOF
+  tags = {
+    Name = "Rekognition-Flask-Application-Role"
+    Project = "Recognizing-faces-using-AWS-Rekognition-service"
+  }
+}
+
+
+##########################################################################################################################################
+#                                                   IAM Policy
+##########################################################################################################################################
+
+#IAM Policy for for EC2 instance to Create and Test Docker image of Flask Application
+
+resource "aws_iam_policy" "rekognition-flask-application-policy" {
+  name = "Rekognition-Flask-Application-Policy"
+  description = "IAM Policy for for EC2 instance to Create and Test Docker image of Flask Application"
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CloudWatchLogGroup",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        {
+            "Sid": "DynamoDBGetItems",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:*"
+            ],
+            "Resource": "arn:aws:dynamodb:*:*:*"
+        },
+        {
+            "Sid": "RekognitionIndexFace",
+            "Effect": "Allow",
+            "Action": [
+                "rekognition:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "S3PutSourceImage",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:HeadObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::face-rekognition-source-bucket/*",
+                "arn:aws:s3:::face-rekognition-source-bucket"
+            ]
+        }
+    ]
+
+}  
+EOF
+  tags = {
+    Name = "Rekognition-Flask-Application-Policy"
+    Project = "Recognizing-faces-using-AWS-Rekognition-service"
+  }
+}
+
+
+##########################################################################################################################################
+#                                                        Role Policy Attachement
+##########################################################################################################################################
+
+#Attaching Role and Policy
+
+resource "aws_iam_role_policy_attachment" "rekognition-flask-application" {
+  role = aws_iam_role.rekognition-flask-application-role.id
+  policy_arn = aws_iam_policy.rekognition-flask-application-policy.arn
+}
