@@ -33,6 +33,7 @@ resource "aws_security_group" "face-prints-sg" {
     protocol = "tcp"
   }
 
+
   tags = {
     Name = "Face-Rekognition-SG"
     Project = "Recognizing-faces-using-AWS-Rekognition-service"

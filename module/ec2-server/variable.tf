@@ -6,11 +6,11 @@ variable "instance-type" {
   default = "t3.micro"
 }
 
-variable "subnet" {
+variable "keypair" {
   default = {}
 }
 
-variable "server-iam-role" {
+variable "subnet-id" {
   default = {}
 }
 
@@ -18,6 +18,7 @@ variable "security-group" {
   default = {}
 }
 
-variable "keypair" {
+variable "Face-Recognition-EC2-Instance-Profile" {
   default = {}
 }
+
