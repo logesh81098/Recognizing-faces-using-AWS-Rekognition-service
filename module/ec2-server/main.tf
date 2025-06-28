@@ -9,6 +9,7 @@ resource "aws_instance" "face-rekognition-server" {
   iam_instance_profile = var.server-iam-role
   subnet_id = var.subnet
   security_groups = [ var.security-group]
+  
   tags = {
     Name = "Rekognition-Flask-Application-Server"
     Project = "Recognizing-faces-using-AWS-Rekognition-service"
