@@ -33,6 +33,12 @@ resource "aws_security_group" "face-prints-sg" {
     protocol = "tcp"
   }
 
+  egress {
+    from_port = 0
+    to_port = 0
+    cidr_blocks = [var.anywhere-ip]
+    protocol = "-1"
+  }
 
   tags = {
     Name = "Face-Rekognition-SG"

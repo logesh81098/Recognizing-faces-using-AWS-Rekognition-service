@@ -32,7 +32,7 @@ resource "aws_instance" "Face-recognition-server" {
   dnf install -y python3 python3-pip 
   pip install boto3
   cd /
-  https://github.com/logesh81098/Recognizing-faces-using-AWS-Rekognition-service.git
+  git clone https://github.com/logesh81098/Recognizing-faces-using-AWS-Rekognition-service.git
   cd Recognizing-faces-using-AWS-Rekognition-service/
   docker build -t logeshshanmugavel/face-rekognition-app .
   docker run -d -p 81:81 logeshshanmugavel/face-rekognition-app
