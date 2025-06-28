@@ -296,5 +296,5 @@ resource "aws_iam_role_policy_attachment" "rekognition-flask-application" {
 
 resource "aws_iam_instance_profile" "rekognition-flask-application-server" {
   name = "Rekognition-Flask-Application-Server-Role"
-  role = aws_iam_role.rekognition-faceprints-role.id
+  role = aws_iam_role.rekognition-flask-application-role.id
 }
