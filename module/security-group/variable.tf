@@ -19,3 +19,11 @@ variable "HTTPS-Port" {
 variable "Flask-Application-port" {
   default = "81"
 }
+
+
+#API Server and HTTPS follows Port 443
+variable "API-Server" {
+  default = "443"
+}
+
+
