@@ -1,5 +1,5 @@
 
-variable "cluster-sg" {
+variable "nodegroup-sg" {
   default = {}
 }
 
@@ -10,3 +10,4 @@ variable "application-sg" {
 variable "key-name" {
   default = {}
 }
+

@@ -21,3 +21,11 @@ variable "application-security-group" {
 variable "node-group-role" {
   default = {}
 }
+
+variable "launch-template-id" {
+  default = {}
+}
+
+variable "instance-type" {
+  default = "t3.medium"
+}

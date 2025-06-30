@@ -5,3 +5,7 @@ output "rekognition-server-sg" {
 output "rekognition-eks-cluster-sg" {
   value = aws_security_group.eks-cluster-sg.id
 }
+
+output "rekognition-nodegroup-sg" {
+  value = aws_security_group.eks-node-group-sg.id
+}

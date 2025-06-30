@@ -47,11 +47,13 @@ module "eks" {
   eks-security-group = module.security-group.rekognition-eks-cluster-sg
   application-security-group = module.security-group.rekognition-server-sg
   node-group-role = module.iam.rekognition-nodegroup-role
+  launch-template-id = module.launch-template.launch-template-id
+  
 }
 
 module "launch-template" {
   source = "./module/launch-template"
-  cluster-sg = module.security-group.rekognition-eks-cluster-sg
+  nodegroup-sg = module.security-group.rekognition-nodegroup-sg
   application-sg = module.security-group.rekognition-server-sg
   key-name = module.key-pair.face-rekognition-server-keypair
 }
