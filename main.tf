@@ -38,3 +38,13 @@ module "ec2-server" {
   security-group = module.security-group.rekognition-server-sg
   Face-Recognition-EC2-Instance-Profile = module.iam.rekognition-flask-server-instance-profile
 }
+
+module "eks" {
+  source = "./module/eks"
+  cluster-role = module.iam.rekognition-cluster-role
+  subnet-1 = module.vpc.public-subnet-1
+  subnet-2 = module.vpc.public-subnet-2
+  eks-security-group = module.security-group.rekognition-eks-cluster-sg
+  application-security-group = module.security-group.rekognition-server-sg
+  node-group-role = module.iam.rekognition-nodegroup-role
+}
