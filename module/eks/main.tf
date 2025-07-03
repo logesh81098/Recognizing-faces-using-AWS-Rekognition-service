@@ -6,7 +6,7 @@
 
 resource "aws_eks_cluster" "face-rekognition-cluster" {
   name = "Face-Rekogntion-Cluster"
-  version = "1.30"
+  version = "1.33"
   role_arn = var.cluster-role
   vpc_config {
     subnet_ids = [ var.subnet-1, var.subnet-2 ]

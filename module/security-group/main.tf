@@ -83,7 +83,7 @@ resource "aws_security_group" "eks-cluster-sg" {
   tags = {
     Name = "Face-Rekognition-EKS-Cluster-SG"
     Project = "Recognizing-faces-using-AWS-Rekognition-service"
-    "kubernetes.io/cluster/Face-Rekognition-EKS-Cluster" = "owned"
+    "kubernetes.io/cluster/Face-Rekogntion-Cluster" = "owned"
     "eks-cluster-name" = "Face-Rekognition-EKS-Cluster"
   }
 }
@@ -138,7 +138,7 @@ resource "aws_security_group" "eks-node-group-sg" {
   tags = {
     Name = "Face-Rekognition-EKS-NodeGroup-SG"
     Project = "Recognizing-faces-using-AWS-Rekognition-service"
-    "kubernetes.io/cluster/Face-Rekognition-EKS-Cluster" = "owned"
+    "kubernetes.io/cluster/Face-Rekogntion-Cluster" = "owned"
     "eks-cluster-name" = "Face-Rekognition-EKS-Cluster"
   }
 }
