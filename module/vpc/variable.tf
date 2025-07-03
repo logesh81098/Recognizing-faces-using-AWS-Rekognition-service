@@ -17,3 +17,11 @@ variable "subnet-2-cidr" {
 variable "az-2" {
   default = "us-east-1b"
 }
+
+variable "subnet-3-cidr" {
+  default = "10.0.3.0/24"
+}
+
+variable "subnet-4-cidr" {
+  default = "10.0.4.0/24"
+}

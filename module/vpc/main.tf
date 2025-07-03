@@ -47,6 +47,8 @@ resource "aws_subnet" "face-rekognition-public-subnet-2" {
 }
 
 
+
+
 ##########################################################################################################################################
 #                                                   Internet Gateway  
 ##########################################################################################################################################
@@ -60,21 +62,24 @@ resource "aws_internet_gateway" "face-rekognition-igw" {
 }
 
 
+
 ##########################################################################################################################################
 #                                                    Route Table  
 ##########################################################################################################################################
 
-resource "aws_route_table" "face-rekognition-rt" {
+resource "aws_route_table" "face-rekognition-public-rt" {
   vpc_id = aws_vpc.face-rekognition-vpc.id
   route {
     gateway_id = aws_internet_gateway.face-rekognition-igw.id
     cidr_block = "0.0.0.0/0"
   }
   tags = {
-    Name = "Face-Rekognition-RouteTable"
+    Name = "Face-Rekognition-Public-RouteTable"
     Project = "Recognizing-faces-using-AWS-Rekognition-service"
   }
 }
+
+
 
 
 ##########################################################################################################################################
@@ -82,11 +87,13 @@ resource "aws_route_table" "face-rekognition-rt" {
 ##########################################################################################################################################
 
 resource "aws_route_table_association" "subnet-1" {
-  route_table_id = aws_route_table.face-rekognition-rt.id
+  route_table_id = aws_route_table.face-rekognition-public-rt.id
   subnet_id = aws_subnet.face-rekognition-public-subnet-1.id
 }
 
 resource "aws_route_table_association" "subnet-2" {
-  route_table_id = aws_route_table.face-rekognition-rt.id
+  route_table_id = aws_route_table.face-rekognition-public-rt.id
   subnet_id = aws_subnet.face-rekognition-public-subnet-2.id
 }
+
+
