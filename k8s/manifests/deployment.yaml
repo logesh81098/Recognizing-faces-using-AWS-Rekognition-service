@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: nginx-deployment
+  name: face-rekognition
 spec:
   replicas: 1
   selector: 
     matchLabels: 
-      app: nginx
+      app: face-rekognition
   template:
     metadata:
       labels:
-        app: nginx
+        app: face-rekognition
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: face-rekognition
+        image: face-rekognition:latest
         ports:
-        - containerPort: 80
+        - containerPort: 81
