@@ -91,7 +91,7 @@ resource "aws_iam_role" "rekognition_irsa_role" {
         Action = "sts:AssumeRoleWithWebIdentity",
         Condition = {
           StringEquals = {
-            "oidc.eks.ap-south-1.amazonaws.com/id/B1B8DD183D89AE8AFF61990F60DDB821:sub" = "system:serviceaccount:default:face-rekognition-sa"
+            "oidc.eks.us-east-1.amazonaws.com/id/10FB2DB97646D89D8AB7BB30944420F6:sub": "system:serviceaccount:default:face-rekognition-sa"
           }
         }
       }
