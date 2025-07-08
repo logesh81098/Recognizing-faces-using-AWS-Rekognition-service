@@ -374,7 +374,7 @@ resource "aws_iam_role_policy_attachment" "eks-application-policy" {
 
 
 ##########################################################################################################################################
-#                                                   IAM Policy
+#                                                   IAM Role
 ##########################################################################################################################################
 
 #IAM Role for EKS Node Group
@@ -396,6 +396,10 @@ resource "aws_iam_role" "eks-node-group-role" {
     ]
 }
 EOF
+  tags = {
+    Name = "Rekognition-EKS-NodGroup-Role"
+    Project = "Recognizing-faces-using-AWS-Rekognition-service"
+  }
 }
 
 

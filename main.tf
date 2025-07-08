@@ -5,7 +5,6 @@ module "s3" {
 
 module "iam" {
   source = "./module/iam"
-  
 }
 
 module "lambda-function" {
