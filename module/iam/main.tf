@@ -466,3 +466,5 @@ resource "aws_iam_role_policy_attachment" "eks-k8s-policy" {
   role = aws_iam_role.eks-node-group-role.id
   policy_arn = aws_iam_policy.face-rekognition-k8s-policy.arn
 }
+
+

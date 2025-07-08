@@ -47,3 +47,24 @@ resource "aws_eks_node_group" "face-rekognition-node-group" {
   }
   
 }
+
+##########################################################################################################################################
+#                                                        Collecting Data of EKS Cluster
+##########################################################################################################################################
+
+#EKS Node Group
+
+data "aws_eks_cluster" "face-rekognition-cluster-data" {
+  name = "Face-Rekogntion-Cluster"
+}
+##########################################################################################################################################
+#                                                        EKS OpenID Provider
+##########################################################################################################################################
+
+#Creating OpenID connect provider, So that Containers in Pod in EKS Cluster can able to access AWS services
+
+resource "aws_iam_openid_connect_provider" "default" {
+  url = data.aws_eks_cluster.face-rekognition-cluster-data.identity[0].oidc[0].issuer
+  client_id_list = ["sts.amazonaws.com"]
+}
+
