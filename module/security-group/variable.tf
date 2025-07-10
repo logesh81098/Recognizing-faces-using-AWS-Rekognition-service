@@ -20,6 +20,10 @@ variable "Flask-Application-port" {
   default = "81"
 }
 
+variable "jenkins-port" {
+  default = "8080"
+}
+
 
 #API Server and HTTPS follows Port 443
 variable "API-Server" {

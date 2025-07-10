@@ -33,6 +33,16 @@ resource "aws_security_group" "face-prints-sg" {
     protocol = "tcp"
   }
 
+  ingress {
+    description = "Ingress Rule for Jenkins"
+    from_port = var.jenkins-port
+    to_port = var.jenkins-port
+    cidr_blocks = [var.anywhere-ip]
+    protocol = "tcp"
+  }
+
+  
+
   egress {
     from_port = 0
     to_port = 0
