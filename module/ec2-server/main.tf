@@ -10,11 +10,17 @@ resource "aws_instance" "Face-recognition-server" {
   key_name = var.keypair
   subnet_id = var.subnet-id
   security_groups = [var.security-group]
+  ebs_block_device {
+    volume_size = var.root-volume-size
+    volume_type = var.root-volume-type
+    device_name = "/dev/xvda"
+  }
   iam_instance_profile = var.Face-Recognition-EC2-Instance-Profile
   tags = {
     Name = "Face-Recognition-Server"
     Project = "Recognizing-faces-using-AWS-Rekognition-service"
   }
+  
   user_data = <<-EOF
   #!bin/bash
   sudo su

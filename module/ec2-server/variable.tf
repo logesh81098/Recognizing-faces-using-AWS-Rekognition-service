@@ -22,3 +22,10 @@ variable "Face-Recognition-EC2-Instance-Profile" {
   default = {}
 }
 
+variable "root-volume-size" {
+  default = "18"
+}
+
+variable "root-volume-type" {
+  default = "gp3"
+}
