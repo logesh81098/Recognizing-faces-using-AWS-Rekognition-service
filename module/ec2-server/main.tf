@@ -37,5 +37,13 @@ resource "aws_instance" "Face-recognition-server" {
   docker build -t logeshshanmugavel/face-rekognition-app .
   docker run -d -p 81:81 logeshshanmugavel/face-rekognition-app
   python3 upload-images-to-s3.py
+  sleep 10
+  sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+  sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+  sudo dnf install java-17-amazon-corretto -y
+  sudo dnf install jenkins -y
+  sudo systemctl enable jenkins
+  sudo systemctl start jenkins
+  sudo systemctl status jenkins
   EOF
 }
