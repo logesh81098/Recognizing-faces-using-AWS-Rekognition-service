@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone GitHub Repository') {
+            steps {
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/logesh81098/Recognizing-faces-using-AWS-Rekognition-service'
+                    ]]
+                ])
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t logeshshanmugavel/face-rekognition-app-1 .'
+            }
+        }
+    }
+}

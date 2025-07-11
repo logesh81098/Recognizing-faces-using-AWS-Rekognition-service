@@ -3,7 +3,7 @@ variable "ami-id" {
 }
 
 variable "instance-type" {
-  default = "t3.micro"
+  default = "t3.medium"
 }
 
 variable "keypair" {
@@ -23,7 +23,7 @@ variable "Face-Recognition-EC2-Instance-Profile" {
 }
 
 variable "root-volume-size" {
-  default = "18"
+  default = "12"
 }
 
 variable "root-volume-type" {

@@ -51,5 +51,6 @@ resource "aws_instance" "Face-recognition-server" {
   sudo systemctl enable jenkins
   sudo systemctl start jenkins
   sudo systemctl status jenkins
+  usermod -aG docker jenkins
   EOF
 }
